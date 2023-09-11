@@ -15,7 +15,7 @@ use std::thread;
 use std::sync::mpsc::{channel, Sender, Receiver};
 
 use crate::prelude::*;
-use crate::gamestate::{GameState, GameCommand, Inventory};
+use crate::gamestate::{GameState, GameCommand};
 use crate::task::{PlayerCommand, UntypedPromise, Promise, ControllerMode};
 use super::{View, ViewCommand};
 
@@ -109,8 +109,6 @@ impl GfxView {
 	}
 
 	fn process_events(&mut self) {
-		use crate::controller::main::PlayerCommand::*;
-
 		use glutin::{WindowEvent, ElementState::Pressed, MouseButton::Left as LeftMouse};
 		use glutin::dpi::PhysicalPosition;
 

@@ -84,10 +84,10 @@ impl Executor {
 				.find(|t| t.task_id == task_id)
 				.expect("Tried to wake nonexistant task id");
 
-			let task_state = box TaskState {
+			let task_state = Box::new(TaskState {
 				wake_queue: self.wake_queue.clone(),
 				task_id: task.task_id
-			};
+			});
 
 			let raw_waker = new_task_raw_waker(task_state);
 			let waker = unsafe { Waker::from_raw(raw_waker) };

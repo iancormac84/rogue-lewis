@@ -1,6 +1,3 @@
-#![feature(nll)]
-#![feature(box_syntax)]
-#![feature(vec_remove_item)]
 #![deny(rust_2018_idioms, future_incompatible)]
 #![allow(elided_lifetimes_in_paths)]
 

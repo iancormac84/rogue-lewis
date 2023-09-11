@@ -204,7 +204,7 @@ impl Inventory {
 			Item::Treasure => self.treasure -= n as i32,
 			Item::Food => self.food -= n as i32,
 			_ => for _ in 0..n {
-				self.items.remove_item(&item);
+				self.items.remove(&item);
 			}
 		}
 

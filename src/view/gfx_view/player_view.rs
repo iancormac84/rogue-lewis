@@ -7,7 +7,7 @@ use super::gfx::mesh_builder::MeshBuilder;
 use crate::gamestate::GameState;
 use crate::task::Promise;
 
-use super::animation::{AnimationQueue, AnimationContext};
+use super::animation::AnimationQueue;
 
 type ColorMeshBuilder = MeshBuilder<ColorVertex>;
 
@@ -67,7 +67,7 @@ impl PlayerView {
 				ctx.run(move |v| v.pos = new_pos).await;
 			}
 
-			ctx.run(move |v| v.pos = to.to_x0z()).await;
+			ctx.run(move |v| v.pos = to.to_x0y()).await;
 
 			promise.fulfill(());
 		});

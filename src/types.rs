@@ -79,7 +79,7 @@ impl From<usize> for Direction {
 
 impl Distribution<Direction> for Standard {
 	fn sample<R: Rng + ?Sized>(&self, rng: &mut R) -> Direction {
-		Direction::from(rng.gen_range(0, 4))
+		Direction::from(rng.gen_range(0..4))
 	}
 }
 
