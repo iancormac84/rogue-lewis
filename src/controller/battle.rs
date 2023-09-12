@@ -27,8 +27,8 @@ async fn run_player_attack(enemy_archetype: EnemyArchetype) {
 
 	let enemy_max_roll = if enemy_archetype.is_boss() { 13 } else { 10 };
 
-	let player_roll = r.gen_range(0, 10);
-	let enemy_roll = r.gen_range(0, enemy_max_roll);
+	let player_roll = r.gen_range(0..10);
+	let enemy_roll = r.gen_range(0..enemy_max_roll);
 
 	match player_roll.cmp(&enemy_roll) {
 		Ordering::Greater => {
@@ -149,7 +149,7 @@ pub async fn run_battle_controller() {
 
 			PlayerCommand::Heal => {
 				if task::consume_player_item(Item::Food).await {
-					task::heal_player(rng().gen_range(1, 4)).await;
+					task::heal_player(rng().gen_range(1..4)).await;
 
 					use AttackSeverity::*;
 

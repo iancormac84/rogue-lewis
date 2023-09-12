@@ -38,7 +38,7 @@ impl BattleView {
 		if !self.active { return }
 
 		let size = Vec2::splat(0.2);
-		let room_pos = location_to_world(gamestate.player.location).to_x0z();
+		let room_pos = location_to_world(gamestate.player.location).to_x0y();
 
 		let flee_palette = ui::HoverablePalette::new(Color::rgb(0.5, 0.0, 1.0));
 		let attack_palette = ui::HoverablePalette::new(Color::rgb(1.0, 0.0, 0.0));

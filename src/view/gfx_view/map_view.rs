@@ -2,7 +2,7 @@ use crate::prelude::*;
 use super::util::*;
 use super::gfx::{Gfx, ui};
 
-use crate::task::{PlayerCommand, ControllerMode, Promise};
+use crate::task::{ControllerMode, Promise};
 use crate::gamestate::GameState;
 use crate::room::Room;
 
@@ -81,7 +81,7 @@ impl MapView {
 				use crate::controller::main::PlayerCommand::*;
 
 				let size = Vec2::splat(0.2);
-				let pos = location_to_world(player_loc).to_x0z() + Vec3::new(0.7, 0.01, 0.7);
+				let pos = location_to_world(player_loc).to_x0y() + Vec3::new(0.7, 0.01, 0.7);
 
 				let region = ui::Region::new_ground(pos, size);
 
@@ -162,12 +162,12 @@ fn build_room(gfx: &mut Gfx, pos: Vec2, room: Room, visited: bool) {
 	let visited_room_color = Color::grey(0.4);
 	let color = if visited { visited_room_color } else { room_color };
 
-	gfx.ui.quad((pos.to_x0z(), Vec2::splat(1.0), ui::Context::Ground), color);
+	gfx.ui.quad((pos.to_x0y(), Vec2::splat(1.0), ui::Context::Ground), color);
 
 	for dir in room.iter_neighbor_directions().map(direction_to_offset) {
 		let pos = pos + dir * 0.5;
 		let size = dir + dir.perp() * 0.4;
-		gfx.ui.quad((pos.to_x0z(), size, ui::Context::Ground), color);
+		gfx.ui.quad((pos.to_x0y(), size, ui::Context::Ground), color);
 	}
 }
 
@@ -221,7 +221,7 @@ impl DoorView {
 		use crate::controller::main::PlayerCommand::*;
 
 		let dir = self.dir;
-		let region = ui::Region::new_ground(self.position().to_x0z(), Vec2::splat(0.6));
+		let region = ui::Region::new_ground(self.position().to_x0y(), Vec2::splat(0.6));
 
 		gfx.ui.update_interact_region(
 			&mut self.hoverable,
@@ -247,7 +247,7 @@ impl DoorView {
 
 		let shadow_color = Color::grey_a(0.1, 0.1);
 
-		let shadow_pos = self.position().to_x0z() + Vec3::from_y(0.005);
+		let shadow_pos = self.position().to_x0y() + Vec3::from_y(0.005);
 		let main_pos = shadow_pos + Vec3::from_y(0.05);
 
 		gfx.ui.arrow((shadow_pos, size, ui::Context::Ground), self.dir, shadow_color);

@@ -233,7 +233,7 @@ impl GfxView {
 						println!("You move {}", dir);
 						let world_loc = location_to_world(gamestate.player.location);
 
-						self.gfx.camera.start_move_to(world_loc.to_x0z());
+						self.gfx.camera.start_move_to(world_loc.to_x0y());
 
 						self.map_view.on_player_move(gamestate);
 						self.player_view.on_player_move(gamestate.player.location, promise.void());

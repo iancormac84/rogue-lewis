@@ -37,9 +37,9 @@ impl Camera {
 			yaw: DEFAULT_YAW,
 			pitch: DEFAULT_PITCH,
 
-			projection_view: Mat4::ident(),
-			inv_projection_view: Mat4::ident(),
-			orientation: Quat::ident(),
+			projection_view: Mat4::identity(),
+			inv_projection_view: Mat4::identity(),
+			orientation: Quat::identity(),
 
 			animation_queue: AnimationQueue::new(),
 			timer: 0.0,

@@ -60,9 +60,9 @@ impl PlayerView {
 			while phase < 1.0 {
 				phase += 0.015;
 
-				let pos = phase.ease_quad_inout(from, to);
+				let pos = phase.lerp(from, to);
 				let hop = (phase * 4.0 * PI).sin().abs() * 0.1;
-				let new_pos = pos.to_x0z() + Vec3::from_y(hop);
+				let new_pos = pos.to_x0y() + Vec3::from_y(hop);
 
 				ctx.run(move |v| v.pos = new_pos).await;
 			}

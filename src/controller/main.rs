@@ -129,7 +129,7 @@ async fn interact() -> bool {
 			];
 
 			if task::consume_player_item(Item::Key).await {
-				let num_items = rng().gen_range(1, 5);
+				let num_items = rng().gen_range(1..5);
 				let items = chest_items.choose_multiple(&mut rng(), num_items);
 
 				println!("You found a chest!");
@@ -249,7 +249,7 @@ pub async fn run_main_controller() {
 
 				PlayerCommand::Heal => {
 					if task::consume_player_item(Item::Food).await {
-						task::heal_player(rng().gen_range(1, 4)).await;
+						task::heal_player(rng().gen_range(1..4)).await;
 					} else {
 						println!("You don't have enough food!");
 					}

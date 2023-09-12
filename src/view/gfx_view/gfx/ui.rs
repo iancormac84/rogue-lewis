@@ -117,8 +117,8 @@ impl Ui {
 			let color = color.into();
 			let offset = direction_to_offset(direction);
 
-			let major = offset.to_x0z() * (size.y/2.0);
-			let minor = offset.perp().to_x0z() * (size.x/2.0);
+			let major = offset.to_x0y() * (size.y/2.0);
+			let minor = offset.perp().to_x0y() * (size.x/2.0);
 
 			// Draw arrow shadow
 			mb.add_tri_fan(&[
@@ -420,7 +420,7 @@ impl HoverablePalette {
 	pub fn new(base: Color) -> HoverablePalette {
 		HoverablePalette {
 			base,
-			hover: 0.5f32.ease_linear(base, Color::white()),
+			hover: 0.5f32.lerp(base, Color::white()),
 			click: Color::white(),
 		}
 	}
@@ -434,7 +434,7 @@ impl HoverablePalette {
 
 		match state {
 			Idle => self.base,
-			HoverEnter(v) | HoverExit(v) => v.ease_linear(self.base, self.hover),
+			HoverEnter(v) | HoverExit(v) => v.lerp(self.base, self.hover),
 			Hovering => self.hover,
 			Clicked(v) => v.ease_back_in(self.hover, self.click),
 		}

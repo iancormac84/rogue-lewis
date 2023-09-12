@@ -45,7 +45,7 @@ impl MerchantView {
 		if !self.active { return }
 
 		let size = Vec2::splat(0.2);
-		let map_pos = location_to_world(gamestate.player.location).to_x0z();
+		let map_pos = location_to_world(gamestate.player.location).to_x0y();
 
 		let leave_pos = map_pos + Vec3::new(0.7, 0.01, -0.5);
 

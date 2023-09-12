@@ -203,8 +203,8 @@ impl Inventory {
 		match item {
 			Item::Treasure => self.treasure -= n as i32,
 			Item::Food => self.food -= n as i32,
-			_ => for _ in 0..n {
-				self.items.remove(&item);
+			_ => for i in 0..n {
+				self.items.remove(i);
 			}
 		}
 
